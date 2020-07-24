@@ -50,13 +50,13 @@ jwt {
 
 ```kotlin
 val jwtIssuer = environment.config.property("jwt.domain").getString()
-val jwtAudience = environment.config.property("jwt.audience").getString()
+val  = environment.config.property("jwt.audience").getString()
 val jwtRealm = environment.config.property("jwt.realm").getString()
 
 install(Authentication) {
     jwt {
         realm = jwtRealm
-        verifier(makeJwtVerifier(jwtIssuer, jwtIssuer))
+        verifier(makeJwtVerifier(jwtIssuer, jwtAudience))
         validate { credential ->
             if (credential.payload.audience.contains(jwtAudience)) JWTPrincipal(credential.payload) else null
         }
